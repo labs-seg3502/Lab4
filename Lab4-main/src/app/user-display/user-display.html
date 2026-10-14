@@ -1,0 +1,23 @@
+<h2>Utilisateurs soumis</h2>
+
+@if (users().length > 0) {
+  <table>
+    <thead>
+      <tr><th>Prénom</th><th>Nom de famille</th><th>Téléphone</th><th>Email</th></tr>
+    </thead>
+    <tbody>
+      @for (u of users(); track $index) {
+        <tr>
+          <td>{{ u.firstName }}</td>
+          <td>{{ u.lastName }}</td>
+          <td>{{ u.phone ?? '—' }}</td>
+          <td>{{ u.email ?? '—' }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+} @else {
+  <p>Aucun utilisateur soumis pour l'instant.</p>
+}
+
+<p><a [routerLink]="['/form']">Ajouter un autre utilisateur</a></p>
