@@ -1,1 +1,68 @@
-/* You can add global styles to this file, and also import other style files */
+/* Styles globaux : couleurs communes, police, fond et focus clavier.
+   Les composants réutilisent ces variables avec var(--nom). */
+:root {
+  --encre: #2b323c;          /* bandeau du haut, titres */
+  --encre-2: #3a4350;
+  --fond: #eef1f5;           /* fond de la page */
+  --carte: #ffffff;
+  --bord: #d5dce5;
+  --bord-fort: #aab6c4;
+  --texte: #1f2630;
+  --texte-doux: #5d6876;
+  --bleu: #729fcf;           /* même bleu que le Lab 3 */
+  --bleu-fonce: #2f5f96;
+  --bleu-clair: #e6eef8;
+  --ambre: #e8a33d;
+  --danger: #b3261e;
+  --danger-clair: #fdecea;
+  --succes: #2e7d4f;
+  --rayon: 12px;
+  --ombre: 0 1px 2px rgb(31 38 48 / 6%), 0 8px 24px rgb(31 38 48 / 8%);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; min-height: 100%; }
+
+body {
+  font-family: "Barlow", system-ui, "Segoe UI", Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--texte);
+  background: var(--fond);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { line-height: 1.15; margin: 0; }
+
+/* Contour bien visible pour la navigation au clavier */
+:focus-visible {
+  outline: 3px solid var(--ambre);
+  outline-offset: 2px;
+}
+
+::selection { background: var(--bleu); color: #fff; }
+
+/* Carte blanche commune aux deux pages (formulaire et tableau) */
+.carte {
+  background: var(--carte);
+  border: 1px solid var(--bord);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  overflow: hidden;
+}
+.carte-entete {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 16px;
+  padding: 22px 28px 18px;
+  border-bottom: 1px solid var(--bord);
+}
+.carte-entete h2 { font-size: 1.35rem; font-weight: 700; color: var(--encre); }
+.carte-entete .aide { flex-basis: 100%; margin: 0; color: var(--texte-doux); font-size: 0.95rem; }
+
+@media (max-width: 560px) {
+  .carte-entete { padding-inline: 18px; }
+}

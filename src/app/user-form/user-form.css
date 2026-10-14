@@ -1,6 +1,116 @@
-.field { margin-bottom: 1rem; display: flex; flex-direction: column; }
-label { font-weight: 600; margin-bottom: 4px; }
-input { padding: 8px; border: 1px solid #999; border-radius: 4px; font-size: 1rem; }
-input.ng-invalid.ng-touched, input.ng-invalid.ng-dirty { border-color: #c00; }
-.alert { margin-top: 4px; padding: 6px 10px; color: #842029; background: #f8d7da; border: 1px solid #f5c2c7; border-radius: 4px; }
-button { padding: 10px 24px; background: #198754; color: white; border: 0; border-radius: 4px; font-size: 1rem; cursor: pointer; }
+/* Formulaire : grille de champs, états de validation, messages d'erreur, bouton */
+
+form { padding: 24px 28px 28px; }
+
+/* Deux colonnes : prénom | nom, téléphone | email */
+.grille {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 24px;
+}
+
+.field { display: flex; flex-direction: column; min-width: 0; }
+label { font-weight: 600; margin-bottom: 6px; color: var(--encre); }
+.requis { color: var(--danger); font-weight: 700; }
+.facultatif {
+  margin-left: 6px;
+  padding: 1px 8px;
+  border-radius: 99px;
+  background: var(--fond);
+  color: var(--texte-doux);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+input {
+  width: 100%;
+  padding: 11px 14px;
+  font: inherit;
+  color: var(--texte);
+  background: #fff;
+  border: 1.5px solid var(--bord-fort);
+  border-radius: 10px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+input::placeholder { color: #9aa5b2; }
+input:hover { border-color: var(--bleu); }
+input:focus { outline: none; border-color: var(--bleu-fonce); box-shadow: 0 0 0 4px var(--bleu-clair); }
+
+/* États donnés par Angular : rouge si invalide, vert si valide et rempli */
+input.ng-invalid.ng-touched, input.ng-invalid.ng-dirty {
+  border-color: var(--danger);
+  background: #fffafa;
+}
+input.ng-invalid.ng-touched:focus, input.ng-invalid.ng-dirty:focus { box-shadow: 0 0 0 4px var(--danger-clair); }
+input.ng-valid.ng-dirty:not(:placeholder-shown) { border-color: var(--succes); }
+
+.indice { margin-top: 6px; color: var(--texte-doux); font-size: 0.85rem; }
+
+/* Message d'erreur sous le champ */
+.alert {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: var(--danger);
+  background: var(--danger-clair);
+  border-left: 3px solid var(--danger);
+  border-radius: 6px;
+  animation: apparait 0.18s ease-out;
+}
+.alert::before {
+  content: "!";
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: var(--danger);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--bord);
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 26px;
+  font: inherit;
+  font-weight: 700;
+  color: #fff;
+  background: var(--bleu-fonce);
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 0 3px 0 #1f4570;
+  cursor: pointer;
+  transition: background-color 0.15s, transform 0.1s, box-shadow 0.1s;
+}
+button:hover { background: #26507f; }
+button:hover svg { transform: translateX(3px); }
+button svg { transition: transform 0.15s; }
+/* Le bouton « s'enfonce » au clic */
+button:active { transform: translateY(3px); box-shadow: 0 0 0 #1f4570; }
+
+@keyframes apparait {
+  from { opacity: 0; transform: translateY(-4px); }
+}
+
+/* Téléphone : une seule colonne, bouton pleine largeur */
+@media (max-width: 560px) {
+  form { padding-inline: 18px; }
+  .grille { grid-template-columns: 1fr; gap: 18px; }
+  button { width: 100%; justify-content: center; }
+}

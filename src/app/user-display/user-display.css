@@ -1,4 +1,98 @@
-table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
-th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-th { background: #0000b3; color: white; }
-tr:nth-child(even) td { background: #f2f2f2; }
+/* Page de résultats : tableau des utilisateurs soumis */
+.compteur {
+  padding: 3px 12px;
+  border-radius: 99px;
+  background: var(--bleu-clair);
+  color: var(--bleu-fonce);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.table-cadre { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+
+th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--encre);
+}
+td {
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--bord);
+  overflow-wrap: anywhere;
+}
+tbody tr:nth-child(even) td { background: #f7f9fb; }
+tbody tr:hover td { background: var(--bleu-clair); }
+tbody tr { animation: apparait 0.3s ease-out; }
+
+.num { width: 48px; text-align: center; }
+td.num { color: var(--ambre); font-weight: 700; font-variant-numeric: tabular-nums; }
+.nom { font-weight: 600; }
+.tel { font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
+.courriel { color: var(--bleu-fonce); text-decoration: none; }
+.courriel:hover { text-decoration: underline; }
+.vide { color: #8a95a3; font-style: italic; }
+
+/* Aucun utilisateur */
+.vide-etat {
+  margin: 24px 28px 0;
+  padding: 32px 20px;
+  text-align: center;
+  color: var(--texte-doux);
+  border: 2px dashed var(--bord);
+  border-radius: var(--rayon);
+}
+.vide-etat svg { color: var(--bord-fort); }
+.vide-etat p { margin: 4px 0 0; }
+.vide-etat .vide-titre { margin-top: 8px; font-weight: 600; color: var(--encre); }
+
+.actions { display: flex; justify-content: flex-end; padding: 20px 28px 24px; }
+
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  font-weight: 700;
+  color: var(--bleu-fonce);
+  text-decoration: none;
+  background: var(--bleu-clair);
+  border: 1.5px solid #c5d6ea;
+  border-radius: 10px;
+  transition: background-color 0.15s, color 0.15s;
+}
+.bouton:hover { background: var(--bleu-fonce); border-color: var(--bleu-fonce); color: #fff; }
+
+@keyframes apparait {
+  from { opacity: 0; transform: translateY(-4px); }
+}
+
+/* Téléphone : chaque ligne du tableau devient une petite fiche */
+@media (max-width: 560px) {
+  thead { display: none; }
+  table, tbody, tr, td { display: block; }
+  tr { margin: 14px 16px; border: 1px solid var(--bord); border-radius: 10px; overflow: hidden; }
+  tbody tr:nth-child(even) td { background: none; }
+  /* Le nom de la colonne s'affiche au-dessus de la valeur */
+  td { display: flex; flex-direction: column; gap: 1px; padding: 9px 14px; }
+  td:last-child { border-bottom: 0; }
+  td::before {
+    content: attr(data-label);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--texte-doux);
+  }
+  /* Ligne du numéro : bandeau foncé « Utilisateur 1 » */
+  td.num { width: auto; flex-direction: row; align-items: baseline; gap: 8px; text-align: left; background: var(--encre) !important; }
+  td.num::before { content: "Utilisateur"; color: #aeb8c5; }
+  .vide-etat { margin: 18px 16px 0; }
+  .actions { padding: 18px 16px 20px; }
+  .bouton { width: 100%; justify-content: center; }
+}

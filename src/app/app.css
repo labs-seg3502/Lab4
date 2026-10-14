@@ -1,7 +1,79 @@
-.container { max-width: 720px; margin: 2rem auto; padding: 0 16px; font-family: system-ui, sans-serif; }
-.nav-link { margin-bottom: 1.5rem; }
-a:link, a:visited {
-  background-color: #0000b3; color: white; padding: 10px 20px;
-  text-decoration: none; display: inline-block; margin-right: 4px;
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
-a:hover, a:active, a.active { background-color: #e60000; }
+
+/* ----- Bandeau du haut ----- */
+.entete {
+  background: var(--encre);
+  color: #fff;
+  padding-top: 28px;
+}
+.entete-contenu { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+.titre { display: flex; align-items: center; gap: 14px; }
+.logo {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: var(--bleu);
+  color: var(--encre);
+  box-shadow: 0 3px 0 #1d232b;
+}
+.surtitre {
+  margin: 0 0 2px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #aeb8c5;
+}
+h1 { font-size: 1.9rem; font-weight: 700; }
+
+/* ----- Onglets de navigation (routerLink) ----- */
+.onglets { display: flex; gap: 6px; margin-top: 24px; }
+.onglets a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px 12px;
+  border-radius: 10px 10px 0 0;
+  color: #c9d1db;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s;
+}
+.onglets a:hover { background: var(--encre-2); color: #fff; }
+/* Onglet de la page affichée : même couleur que le fond, il se « colle » au contenu */
+.onglets a.active { background: var(--fond); color: var(--encre); }
+.onglets a.active svg { color: var(--bleu-fonce); }
+
+/* ----- Contenu de la page (router-outlet) ----- */
+.contenu {
+  flex: 1;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px 16px 40px;
+}
+
+.pied {
+  padding: 18px 16px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--texte-doux);
+  border-top: 1px solid var(--bord);
+}
+
+/* ----- Téléphone ----- */
+@media (max-width: 560px) {
+  .entete { padding-top: 20px; }
+  h1 { font-size: 1.5rem; }
+  .logo { width: 42px; height: 42px; }
+  .onglets { margin-top: 18px; }
+  .onglets a { flex: 1; justify-content: center; padding-inline: 10px; }
+}

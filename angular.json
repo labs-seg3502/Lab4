@@ -25,6 +25,11 @@
               }
             ],
             "styles": [
+              "@fontsource/barlow/400.css",
+              "@fontsource/barlow/400-italic.css",
+              "@fontsource/barlow/500.css",
+              "@fontsource/barlow/600.css",
+              "@fontsource/barlow/700.css",
               "src/styles.css"
             ]
           },
@@ -82,6 +87,11 @@
               }
             ],
             "styles": [
+              "@fontsource/barlow/400.css",
+              "@fontsource/barlow/400-italic.css",
+              "@fontsource/barlow/500.css",
+              "@fontsource/barlow/600.css",
+              "@fontsource/barlow/700.css",
               "src/styles.css"
             ]
           }

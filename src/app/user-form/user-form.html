@@ -1,39 +1,55 @@
-<h2>Informations de l'utilisateur</h2>
+<section class="carte">
+  <header class="carte-entete">
+    <h2>Informations de l'utilisateur</h2>
+    <p class="aide">Les champs marqués d'un <span class="requis">*</span> sont obligatoires.</p>
+  </header>
 
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
-  <div class="field">
-    <label for="firstName">Prénom *</label>
-    <input id="firstName" type="text" formControlName="firstName">
-    @if (showError(firstName)) {
-      <div class="alert">Le prénom est obligatoire.</div>
-    }
-  </div>
-
-  <div class="field">
-    <label for="lastName">Nom de famille *</label>
-    <input id="lastName" type="text" formControlName="lastName">
-    @if (showError(lastName)) {
-      <div class="alert">Le nom de famille est obligatoire.</div>
-    }
-  </div>
-
-  <div class="field">
-    <label for="phone">Numéro de téléphone</label>
-    <input id="phone" type="tel" formControlName="phone" placeholder="6135551234">
-    @if (showError(phone)) {
-      <div class="alert">
-        Le numéro doit comporter 10 chiffres, et le premier et le quatrième chiffre doivent être différents de 0.
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="grille">
+      <div class="field">
+        <label for="firstName">Prénom <span class="requis" aria-hidden="true">*</span></label>
+        <input id="firstName" type="text" formControlName="firstName" placeholder="Ex. : Marie" autocomplete="given-name">
+        @if (showError(firstName)) {
+          <div class="alert" role="alert">Le prénom est obligatoire.</div>
+        }
       </div>
-    }
-  </div>
 
-  <div class="field">
-    <label for="email">Email</label>
-    <input id="email" type="email" formControlName="email" placeholder="nom@exemple.com">
-    @if (showError(email)) {
-      <div class="alert">L'adresse email n'est pas valide.</div>
-    }
-  </div>
+      <div class="field">
+        <label for="lastName">Nom de famille <span class="requis" aria-hidden="true">*</span></label>
+        <input id="lastName" type="text" formControlName="lastName" placeholder="Ex. : Tremblay" autocomplete="family-name">
+        @if (showError(lastName)) {
+          <div class="alert" role="alert">Le nom de famille est obligatoire.</div>
+        }
+      </div>
 
-  <button type="submit">Soumettre</button>
-</form>
+      <div class="field">
+        <label for="phone">Numéro de téléphone <span class="facultatif">facultatif</span></label>
+        <input id="phone" type="tel" inputmode="numeric" formControlName="phone" placeholder="6135551234" autocomplete="tel-national" aria-describedby="phone-aide">
+        @if (showError(phone)) {
+          <div class="alert" role="alert">
+            Le numéro doit comporter 10 chiffres, et le premier et le quatrième chiffre doivent être différents de 0.
+          </div>
+        } @else {
+          <small id="phone-aide" class="indice">10 chiffres, sans espaces ni tirets.</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="email">Email <span class="facultatif">facultatif</span></label>
+        <input id="email" type="email" formControlName="email" placeholder="nom@exemple.com" autocomplete="email">
+        @if (showError(email)) {
+          <div class="alert" role="alert">L'adresse email n'est pas valide.</div>
+        }
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="submit">
+        Soumettre
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14M13 6l6 6-6 6"/>
+        </svg>
+      </button>
+    </div>
+  </form>
+</section>
