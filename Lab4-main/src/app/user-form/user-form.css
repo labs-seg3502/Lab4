@@ -1,6 +1,0 @@
-.field { margin-bottom: 1rem; display: flex; flex-direction: column; }
-label { font-weight: 600; margin-bottom: 4px; }
-input { padding: 8px; border: 1px solid #999; border-radius: 4px; font-size: 1rem; }
-input.ng-invalid.ng-touched, input.ng-invalid.ng-dirty { border-color: #c00; }
-.alert { margin-top: 4px; padding: 6px 10px; color: #842029; background: #f8d7da; border: 1px solid #f5c2c7; border-radius: 4px; }
-button { padding: 10px 24px; background: #198754; color: white; border: 0; border-radius: 4px; font-size: 1rem; cursor: pointer; }
